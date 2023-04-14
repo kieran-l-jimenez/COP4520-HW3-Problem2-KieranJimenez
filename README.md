@@ -17,3 +17,12 @@ every reading. In your report, discuss the efficiency, correctness, and progress
 of your program. 
 
 ## Solution:
+Unfortunately I found this problem a little unclear, but I believe I have a proper solution. 
+I started by having each of the 8 cores given an ID and making each in charge of 1 of the 8 
+sensors. Then I just had them "record" a temperature every minute. (Attempting a short wait 
+for each thread to closer simulate the 1 minute wait was stopped by an IllegalMonitorStateException 
+that I couldn't figure out. As far as the shared memory space, I just used a large int array.
+I made sure there was no overlap by controlling which elements a thread could access with its
+given ID. This was especially nice as there was no waiting on threads.
+Compiling the report was a little slower since I dropped down to 3 working threads, but 
+splitting up the sorting and calculation work the little I did should still help it speed up.
